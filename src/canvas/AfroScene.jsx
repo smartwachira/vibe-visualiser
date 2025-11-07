@@ -50,5 +50,53 @@ export default function AfroScene({seed = "sunrise rhythm"}) {
 
         //subtle background gradient using CSS clear color
         renderer.setClearColor(0x000000, 0);
-    });   
+
+        meshes.forEach((m, idx) => {
+      const delay = idx * 0.2;
+      gsap.to(m.scale, {
+        x: 1.15,
+        y: 1.15,
+        z: 1.15,
+        yoyo: true,
+        repeat: -1,
+        duration: 1.2 + idx * 0.3,
+        ease: "sine.inOut",
+        delay,
+      });
+    });
+
+    gsap.to(group.rotation, {
+        y: Math.PI * 2,
+        duration:28,
+        repeat:-1,
+        ease:"none",
+    });
+    const tick = ()=>{
+        meshes.forEach((m, i)=>{
+            m.rotation.x += 0.004 + i * 0.002;
+            m.rotation.y += 0.006 + i *0.002;
+        });
+        renderer.render(scene, camera);
+        requestAnimationFrame(tick);
+    };
+    tick();
+
+    const onResize = () =>{
+        const w = el.clientWidth;
+        const h = el.clientHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w/h;
+        camera.updateProjectionMatrix();
+
+    };
+    window.addEventListener("resize",onResize);
+
+    return () =>{
+        window.removeEventListener("resize", onResize);
+        renderer.dispose();
+        el.removeChild(renderer.domElement);
+    };
+    }, [seed]);
+    
+    return <div ref={mountRef} style ={{width:"100%", height:"100%"}}/>;
 }

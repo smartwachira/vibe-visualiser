@@ -1,6 +1,7 @@
 import React, {useState} from "react";// useState - this component needs local state to hold the mood input value
 import AfroScene from "./canvas/AfroScene";
 
+/* Declares and exports the App functional component as the module’s default export. */
 export default function App() {
     const [mood, setMood] = useState("");
 
