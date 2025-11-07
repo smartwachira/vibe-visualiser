@@ -6,7 +6,7 @@
 ![Day 1 demo screenshot](./assets/day1_screenshot.png) <!-- add a screenshot file -->
 
 ## Live demo
-(coming soon) — deploy with Vercel and paste the URL here.
+(https://vibe-visualiser.vercel.app/)
 
 ## Tech
 - Vite + React
