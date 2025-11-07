@@ -8,7 +8,7 @@ export default function AfroScene({seed = "sunrise rhythm"}) {
     useEffect(() =>{
         const el = mountRef.current;
         const width = el.clientWidth;
-        const height = el.clientHeight;
+        const height = el.clientHeight; //height
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(50, width/height, 0.1, 1000);
